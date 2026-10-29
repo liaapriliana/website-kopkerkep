@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koperasi Desa Merah Putih Kerkep — Bersama Membangun Desa</title>
+  <meta name="description" content="Koperasi Desa Merah Putih Kerkep: layanan simpan pinjam, unit usaha desa, pemberdayaan UMKM, dan sembako murah untuk warga Desa Kerkep-Gurah." />
+  <meta name="theme-color" content="#DC2626" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            merah: {
+              50: '#FEF2F2', 100: '#FEE2E2', 200: '#FECACA', 300: '#FCA5A5',
+              400: '#F87171', 500: '#EF4444', 600: '#DC2626', 700: '#B91C1C',
+              800: '#991B1B', 900: '#7F1D1D'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 18px 45px -20px rgba(185, 28, 28, 0.35)',
+            card: '0 4px 24px -10px rgba(17, 24, 39, 0.14)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html { -webkit-text-size-adjust: 100%; }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    .mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height .38s cubic-bezier(.22,1,.36,1), opacity .28s ease;
+    }
+    .mobile-menu.open { max-height: 680px; opacity: 1; }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      background: #FEE2E2;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px; height: 24px;
+      border-radius: 9999px;
+      background: #fff;
+      border: 4px solid #DC2626;
+      box-shadow: 0 3px 10px rgba(220, 38, 38, .38);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.14); box-shadow: 0 5px 16px rgba(220,38,38,.5); }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px; height: 22px;
+      border-radius: 9999px;
+      background: #fff;
+      border: 4px solid #DC2626;
+      box-shadow: 0 3px 10px rgba(220, 38, 38, .38);
+      cursor: pointer;
+    }
+    input[type="range"]:focus-visible { box-shadow: 0 0 0 4px rgba(220,38,38,.18); }
+
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .38s cubic-bezier(.22,1,.36,1);
+    }
+
+    .modal {
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .26s ease, visibility .26s ease;
+    }
+    .modal.open { opacity: 1; visibility: visible; }
+    .modal-panel {
+      transform: translateY(18px) scale(.97);
+      transition: transform .34s cubic-bezier(.22,1,.36,1);
+    }
+    .modal.open .modal-panel { transform: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .card-enter { animation: fadeUp .38s cubic-bezier(.22,1,.36,1) both; }
+
+    #toast {
+      transform: translateY(140%);
+      transition: transform .42s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+      opacity: 0;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+
+    ::selection { background: #DC2626; color: #fff; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-gray-50 font-sans text-gray-800 antialiased">
+
+  <!-- ══════════════════════════════════════════ NAVBAR ═══════════════════════════════════════════ -->
+  <header id="siteHeader" class="fixed inset-x-0 top-0 z-50">
+    <div class="mx-auto max-w-7xl px-3 sm:px-5 lg:px-8">
+      <div id="navShell"
+           class="mt-3 flex items-center justify-between gap-3 rounded-2xl border border-white/70 bg-white/80 px-3 py-2.5 shadow-card backdrop-blur-xl transition-all duration-300 sm:px-4">
+
+        <a href="#beranda" class="flex shrink-0 items-center gap-2.5">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-merah-500 to-merah-700 text-white shadow-soft">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18M6.5 6.5l11 11M17.5 6.5l-11 11"/>
+            </svg>
+          </span>
+          <span class="leading-tight">
+            <span class="block text-[10px] font-bold uppercase tracking-[0.2em] text-merah-600">Koperasi Desa</span>
+            <span class="block text-[13px] font-extrabold leading-tight text-gray-900 sm:text-[15px]">Merah Putih Kerkep</span>
+          </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <ul class="hidden items-center gap-1 lg:flex">
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#beranda">Beranda</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#layanan">Layanan</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#simulasi">Simulasi</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#produk">Produk UMKM</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#berita">Transparansi</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#struktur">Struktur</a></li>
+          <li><a class="rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition hover:bg-merah-50 hover:text-merah-700" href="#faq">FAQ</a></li>
+        </ul>
+
+        <div class="hidden items-center gap-2 lg:flex">
+          <button type="button" data-open-modal="modalDaftar"
+                  class="group inline-flex items-center gap-2 rounded-xl bg-merah-600 px-4 py-2.5 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-merah-700 active:translate-y-0">
+            Daftar Anggota
+            <svg class="h-4 w-4 transition group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+            </svg>
+          </button>
+        </div>
+
+        <button id="menuBtn" type="button"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 transition hover:border-merah-200 hover:text-merah-600 lg:hidden"
+                aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
+          <svg id="iconMenu" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/>
+          </svg>
+          <svg id="iconClose" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="mobile-menu lg:hidden">
+        <div class="mt-2 rounded-2xl border border-gray-100 bg-white p-3 shadow-card">
+          <ul class="flex flex-col gap-1">
+            <li><a href="#beranda" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Beranda</a></li>
+            <li><a href="#layanan" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Layanan Utama</a></li>
+            <li><a href="#simulasi" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Simulasi Pinjaman</a></li>
+            <li><a href="#produk" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Produk UMKM</a></li>
+            <li><a href="#berita" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Berita &amp; Transparansi</a></li>
+            <li><a href="#struktur" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Struktur Organisasi</a></li>
+            <li><a href="#faq" class="block rounded-xl px-4 py-3 text-sm font-semibold text-gray-700 transition hover:bg-merah-50 hover:text-merah-700">Pertanyaan Umum</a></li>
+          </ul>
+          <button type="button" data-open-modal="modalDaftar"
+                  class="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-merah-600 px-4 py-3.5 text-sm font-bold text-white shadow-soft transition hover:bg-merah-700">
+            Daftar Anggota Sekarang
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════ HERO ═══════════════════════════════════════════ -->
+    <section id="beranda" class="relative overflow-hidden pb-16 pt-28 scroll-mt-24 sm:pt-32 lg:pb-24 lg:pt-36">
+      <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-50"></div>
+        <div class="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-merah-200/50 blur-3xl"></div>
+        <div class="absolute -left-24 top-44 h-72 w-72 rounded-full bg-amber-200/40 blur-3xl"></div>
+        <div class="absolute bottom-0 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-merah-100/50 blur-3xl"></div>
+      </div>
+
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-10">
+
+          <div class="reveal">
+            <span class="inline-flex items-center gap-2 rounded-full border border-merah-200/70 bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-merah-700 shadow-sm backdrop-blur">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-merah-500 opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-merah-600"></span>
+              </span>
+              Koperasi Desa/Kelurahan Merah Putih · Kerkep, Kecamatan Gurah, Kab. Kediri
+            </span>
+
+            <h1 class="mt-5 text-[2.15rem] font-extrabold leading-[1.12] tracking-tight text-gray-900 sm:text-5xl lg:text-[3.35rem]">
+              Bersama Kopdes <span class="text-merah-600">Merah Putih</span>,<br class="hidden sm:block" />
+              Desa Kerkep Makin
+              <span class="relative inline-block">
+                <span class="relative z-10">Sejahtera</span>
+                <span class="absolute inset-x-0 bottom-1 z-0 h-3 rounded-full bg-merah-200/80 sm:h-3.5"></span>
+              </span>
+            </h1>
+
+            <p class="mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg">
+              <i>"Membangun ekosistem koperasi desa modern dan tepat sasaran untuk memperkuat ketahanan pangan,
+              pembiayaan simpan pinjam, dan layanan kesehatan rakyat."</i> — Presiden Prabowo Subianto —
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <button type="button" data-open-modal="modalDaftar"
+                      class="group inline-flex items-center justify-center gap-2 rounded-xl bg-merah-600 px-6 py-3.5 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-merah-700 active:translate-y-0 sm:text-base">
+                Daftar Jadi Anggota
+                <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+                </svg>
+              </button>
+              <a href="#produk"
+                 class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-bold text-gray-800 shadow-sm transition hover:-translate-y-0.5 hover:border-merah-200 hover:text-merah-700 sm:text-base">
+                <svg class="h-5 w-5 text-merah-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/>
+                </svg>
+                Lihat Produk UMKM
+              </a>
+            </div>
+
+            <div class="mt-9 grid grid-cols-3 gap-3 sm:gap-4">
+              <div class="rounded-2xl border border-white/70 bg-white/70 p-3.5 text-center shadow-sm backdrop-blur sm:p-4">
+                <p class="text-lg font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+                  <span class="counter" data-target="1240" data-suffix="+">0</span>
+                </p>
+                <p class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-500 sm:text-[11px]">Anggota Aktif</p>
+              </div>
+              <div class="rounded-2xl border border-white/70 bg-white/70 p-3.5 text-center shadow-sm backdrop-blur sm:p-4">
+                <p class="text-lg font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+                  <span class="counter" data-target="4">0</span>
+                </p>
+                <p class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-500 sm:text-[11px]">Unit Usaha</p>
+              </div>
+              <div class="rounded-2xl border border-white/70 bg-white/70 p-3.5 text-center shadow-sm backdrop-blur sm:p-4">
+                <p class="text-lg font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+                  <span class="counter" data-target="2.84" data-decimals="2" data-prefix="Rp " data-suffix=" M">0</span>
+                </p>
+                <p class="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-500 sm:text-[11px]">Dana Kelolaan</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal" style="transition-delay:120ms">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+              <div class="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-merah-500/15 via-amber-200/25 to-transparent blur-2xl" aria-hidden="true"></div>
+
+              <div class="rounded-3xl border border-white bg-white/95 p-5 shadow-[0_30px_70px_-32px_rgba(185,28,28,0.45)] backdrop-blur sm:p-6">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-400">Total Dana Kelolaan</p>
+                    <p class="mt-1 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Rp 2,84 M</p>
+                  </div>
+                  <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-600">
+                    <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+                    </svg>
+                    12,4%
+                  </span>
+                </div>
+
+                <div class="mt-6 flex h-28 items-end gap-2 sm:gap-2.5">
+                  <div class="flex-1 rounded-t-lg bg-merah-100" style="height:34%"></div>
+                  <div class="flex-1 rounded-t-lg bg-merah-100" style="height:46%"></div>
+                  <div class="flex-1 rounded-t-lg bg-merah-100" style="height:40%"></div>
+                  <div class="flex-1 rounded-t-lg bg-merah-200" style="height:58%"></div>
+                  <div class="flex-1 rounded-t-lg bg-merah-200" style="height:54%"></div>
+                  <div class="flex-1 rounded-t-lg bg-merah-400" style="height:76%"></div>
+                  <div class="flex-1 rounded-t-lg bg-gradient-to-t from-merah-700 to-merah-500 shadow-soft" style="height:96%"></div>
+                </div>
+                <div class="mt-2 flex justify-between text-[9px] font-bold uppercase tracking-wider text-gray-300">
+                  <span>Jul</span><span>Ags</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Des</span><span class="text-merah-500">Jan</span>
+                </div>
+
+                <div class="mt-5 grid grid-cols-2 gap-3 border-t border-gray-100 pt-5">
+                  <div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Angsuran Lancar</p>
+                    <p class="mt-0.5 text-lg font-extrabold text-gray-900">98,6%</p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">SHU 2024</p>
+                    <p class="mt-0.5 text-lg font-extrabold text-gray-900">Rp 148 jt</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute -left-2 top-20 hidden rounded-2xl border border-white/80 bg-white/90 p-3 shadow-lg backdrop-blur sm:block">
+                <div class="flex items-center gap-2.5">
+                  <span class="grid h-9 w-9 place-items-center rounded-xl bg-merah-50 text-merah-600">
+                    <svg style="width:18px;height:18px" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <p class="text-xs font-extrabold text-gray-900">Proses Cepat</p>
+                    <p class="text-[10px] font-medium text-gray-500">Maks. 1×24 jam</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute -bottom-4 -right-2 hidden rounded-2xl border border-white/80 bg-white/90 p-3 shadow-lg backdrop-blur sm:block">
+                <div class="flex items-center gap-2.5">
+                  <span class="grid h-9 w-9 place-items-center rounded-xl bg-emerald-50 text-lg">🛒</span>
+                  <div>
+                    <p class="text-xs font-extrabold text-gray-900">Sembako Murah</p>
+                    <p class="text-[10px] font-medium text-gray-500">Setiap Sabtu pagi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ LAYANAN UTAMA ═══════════════════════════════════════════ -->
+    <section id="layanan" class="scroll-mt-24 py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Layanan Utama</span>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Empat Layanan, Satu Tujuan: Warga Kerkep Sejahtera
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-600">
+            Dikelola secara profesional dan transparan oleh pengurus yang dipilih langsung oleh anggota.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+          <!-- Card 1: Simpan Pinjam -->
+          <article class="reveal group flex flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:border-merah-200 hover:shadow-soft">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-merah-50 text-merah-600 transition duration-300 group-hover:bg-merah-600 group-hover:text-white">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </span>
+            <h3 class="mt-5 text-lg font-extrabold text-gray-900">Simpan Pinjam</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+              Pinjaman modal usaha dengan bunga flat ringan 1%/bulan, tanpa biaya tersembunyi, dan proses cepat.
+            </p>
+            <a href="#simulasi" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-merah-600 transition hover:text-merah-700">
+              Hitung angsuran
+              <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 2: Unit Usaha Desa (REVISI) -->
+          <article class="reveal group flex flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:border-merah-200 hover:shadow-soft" style="transition-delay:80ms">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-merah-50 text-merah-600 transition duration-300 group-hover:bg-merah-600 group-hover:text-white">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/>
+              </svg>
+            </span>
+            <h3 class="mt-5 text-lg font-extrabold text-gray-900">Unit Usaha Desa</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+              Gerai sembako, distribusi barang subsidi (beras, LPG, minyak, pupuk), simpan pinjam, apotek desa, pergudangan, klinik kesehatan, off taker pertanian, dan pendampingan UMKM.
+            </p>
+            <a href="#produk" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-merah-600 transition hover:text-merah-700">
+              Lihat unit usaha
+              <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 3: Pemberdayaan UMKM -->
+          <article class="reveal group flex flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:border-merah-200 hover:shadow-soft" style="transition-delay:160ms">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-merah-50 text-merah-600 transition duration-300 group-hover:bg-merah-600 group-hover:text-white">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+              </svg>
+            </span>
+            <h3 class="mt-5 text-lg font-extrabold text-gray-900">Pemberdayaan UMKM</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+              Pelatihan digital marketing, sertifikasi produk, dan pendampingan kemasan untuk pelaku usaha desa.
+            </p>
+            <a href="#produk" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-merah-600 transition hover:text-merah-700">
+              Katalog UMKM
+              <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Card 4: Sembako Murah -->
+          <article class="reveal group flex flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1.5 hover:border-merah-200 hover:shadow-soft" style="transition-delay:240ms">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-merah-50 text-merah-600 transition duration-300 group-hover:bg-merah-600 group-hover:text-white">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+              </svg>
+            </span>
+            <h3 class="mt-5 text-lg font-extrabold text-gray-900">Sembako Murah</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+              Beras, minyak, gula, dan kebutuhan pokok lain dengan harga di bawah pasar. Khusus anggota.
+            </p>
+            <a href="#berita" class="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-merah-600 transition hover:text-merah-700">
+              Jadwal &amp; info
+              <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+              </svg>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ SIMULASI ═══════════════════════════════════════════ -->
+    <section id="simulasi" class="scroll-mt-24 py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal mx-auto mb-10 max-w-2xl text-center">
+          <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Simulasi Interaktif</span>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Hitung Sendiri, Tanpa Rasa Cemas</h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-600">
+            Geser slider untuk melihat estimasi angsuran pinjaman atau proyeksi saldo simpanan Anda.
+          </p>
+        </div>
+
+        <div class="reveal overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-card">
+          <div class="grid lg:grid-cols-5">
+
+            <div class="p-6 sm:p-8 lg:col-span-3">
+              <div class="inline-flex rounded-xl bg-gray-100 p-1" role="tablist" aria-label="Jenis simulasi">
+                <button type="button" data-tab="pinjaman" role="tab" aria-selected="true"
+                        class="rounded-lg bg-white px-4 py-2 text-sm font-bold text-merah-700 shadow-sm transition sm:px-6">
+                  Simulasi Pinjaman
+                </button>
+                <button type="button" data-tab="simpanan" role="tab" aria-selected="false"
+                        class="rounded-lg px-4 py-2 text-sm font-bold text-gray-500 transition hover:text-gray-700 sm:px-6">
+                  Simulasi Simpanan
+                </button>
+              </div>
+
+              <!-- PANEL PINJAMAN -->
+              <div data-panel="pinjaman" class="mt-7">
+                <div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <label for="pinjamanAmount" class="text-sm font-bold text-gray-700">Jumlah Pinjaman</label>
+                    <span id="pinjamanAmountLabel" class="text-lg font-extrabold text-merah-600">Rp 5.000.000</span>
+                  </div>
+                  <input id="pinjamanAmount" type="range" min="500000" max="20000000" step="500000" value="5000000"
+                         class="mt-4" aria-describedby="pinjamanAmountLabel" />
+                  <div class="mt-2 flex justify-between text-[11px] font-semibold text-gray-400">
+                    <span>Rp 500 rb</span><span>Rp 20 jt</span>
+                  </div>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <button type="button" data-amount="1000000" class="preset-btn rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-700">Rp 1 jt</button>
+                    <button type="button" data-amount="3000000" class="preset-btn rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-700">Rp 3 jt</button>
+                    <button type="button" data-amount="5000000" class="preset-btn rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-700">Rp 5 jt</button>
+                    <button type="button" data-amount="10000000" class="preset-btn rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-700">Rp 10 jt</button>
+                    <button type="button" data-amount="20000000" class="preset-btn rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-bold text-gray-600 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-700">Rp 20 jt</button>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <label for="pinjamanTenor" class="text-sm font-bold text-gray-700">Jangka Waktu</label>
+                    <span id="pinjamanTenorLabel" class="text-lg font-extrabold text-merah-600">12 bulan</span>
+                  </div>
+                  <input id="pinjamanTenor" type="range" min="3" max="24" step="1" value="12"
+                         class="mt-4" aria-describedby="pinjamanTenorLabel" />
+                  <div class="mt-2 flex justify-between text-[11px] font-semibold text-gray-400">
+                    <span>3 bulan</span><span>24 bulan</span>
+                  </div>
+                </div>
+
+                <p class="mt-7 rounded-xl border border-amber-100 bg-amber-50/70 p-3.5 text-xs leading-relaxed text-amber-800">
+                  <strong>Catatan:</strong> simulasi memakai asumsi bunga flat <strong>1% per bulan</strong> dari pokok pinjaman.
+                  Angka bersifat estimasi; angsuran final ditetapkan setelah verifikasi pengurus.
+                </p>
+              </div>
+
+              <!-- PANEL SIMPANAN -->
+              <div data-panel="simpanan" class="mt-7 hidden">
+                <div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <label for="simpananAwal" class="text-sm font-bold text-gray-700">Setoran Awal</label>
+                    <span id="simpananAwalLabel" class="text-lg font-extrabold text-merah-600">Rp 500.000</span>
+                  </div>
+                  <input id="simpananAwal" type="range" min="100000" max="5000000" step="100000" value="500000"
+                         class="mt-4" aria-describedby="simpananAwalLabel" />
+                  <div class="mt-2 flex justify-between text-[11px] font-semibold text-gray-400">
+                    <span>Rp 100 rb</span><span>Rp 5 jt</span>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <label for="simpananBulanan" class="text-sm font-bold text-gray-700">Setoran Rutin / Bulan</label>
+                    <span id="simpananBulananLabel" class="text-lg font-extrabold text-merah-600">Rp 200.000</span>
+                  </div>
+                  <input id="simpananBulanan" type="range" min="50000" max="2000000" step="50000" value="200000"
+                         class="mt-4" aria-describedby="simpananBulananLabel" />
+                  <div class="mt-2 flex justify-between text-[11px] font-semibold text-gray-400">
+                    <span>Rp 50 rb</span><span>Rp 2 jt</span>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <label for="simpananTenor" class="text-sm font-bold text-gray-700">Jangka Waktu</label>
+                    <span id="simpananTenorLabel" class="text-lg font-extrabold text-merah-600">12 bulan</span>
+                  </div>
+                  <input id="simpananTenor" type="range" min="6" max="60" step="6" value="12"
+                         class="mt-4" aria-describedby="simpananTenorLabel" />
+                  <div class="mt-2 flex justify-between text-[11px] font-semibold text-gray-400">
+                    <span>6 bulan</span><span>60 bulan</span>
+                  </div>
+                </div>
+
+                <p class="mt-7 rounded-xl border border-amber-100 bg-amber-50/70 p-3.5 text-xs leading-relaxed text-amber-800">
+                  <strong>Catatan:</strong> proyeksi memakai asumsi jasa simpanan <strong>0,6% per bulan</strong> berbunga majemuk.
+                  Nilai aktual mengikuti keputusan Rapat Anggota Tahunan.
+                </p>
+              </div>
+            </div>
+
+            <div class="relative overflow-hidden bg-gradient-to-br from-merah-700 via-merah-600 to-merah-800 p-6 text-white sm:p-8 lg:col-span-2">
+              <div class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" aria-hidden="true"></div>
+              <div class="pointer-events-none absolute -bottom-20 -left-12 h-48 w-48 rounded-full bg-white/10 blur-2xl" aria-hidden="true"></div>
+
+              <div data-result="pinjaman" class="relative">
+                <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-merah-100">Estimasi Angsuran</p>
+                <p id="hasilAngsuran" class="mt-2 text-4xl font-extrabold tracking-tight sm:text-[2.6rem]">Rp 0</p>
+                <p class="mt-1 text-sm font-medium text-merah-100">per bulan · bunga flat 1%/bulan</p>
+
+                <div class="mt-6 space-y-3 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-merah-100">Pokok pinjaman</span>
+                    <span id="hasilPokok" class="font-bold">Rp 0</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-merah-100">Total bunga</span>
+                    <span id="hasilBunga" class="font-bold">Rp 0</span>
+                  </div>
+                  <div class="h-px bg-white/20"></div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-merah-100">Total pembayaran</span>
+                    <span id="hasilTotal" class="text-base font-extrabold">Rp 0</span>
+                  </div>
+                </div>
+              </div>
+
+              <div data-result="simpanan" class="relative hidden">
+                <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-merah-100">Estimasi Saldo Akhir</p>
+                <p id="hasilSaldo" class="mt-2 text-4xl font-extrabold tracking-tight sm:text-[2.6rem]">Rp 0</p>
+                <p class="mt-1 text-sm font-medium text-merah-100">jasa simpanan 0,6%/bulan</p>
+
+                <div class="mt-6 space-y-3 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-merah-100">Total setoran</span>
+                    <span id="hasilSetoran" class="font-bold">Rp 0</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-merah-100">Estimasi jasa</span>
+                    <span id="hasilJasa" class="font-bold">Rp 0</span>
+                  </div>
+                  <div class="h-px bg-white/20"></div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-merah-100">Saldo akhir</span>
+                    <span id="hasilSaldoKecil" class="text-base font-extrabold">Rp 0</span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" data-open-modal="modalDaftar"
+                      class="relative mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-merah-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-merah-50 active:translate-y-0">
+                Ajukan Sekarang
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ KATALOG PRODUK UMKM ═══════════════════════════════════════════ -->
+    <section id="produk" class="scroll-mt-24 bg-white py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div class="max-w-2xl">
+            <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Katalog UMKM</span>
+            <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Produk Asli Warga Kerkep</h2>
+            <p class="mt-3 text-base leading-relaxed text-gray-600">
+              Setiap pembelian langsung menggerakkan roda ekonomi dusun. Pesan mudah lewat WhatsApp.
+            </p>
+          </div>
+        </div>
+
+        <div class="no-scrollbar mt-8 flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Filter kategori produk">
+          <button type="button" data-filter="semua" class="filter-chip shrink-0 rounded-full bg-merah-600 px-4 py-2 text-sm font-bold text-white shadow-soft transition">Semua</button>
+          <button type="button" data-filter="makanan" class="filter-chip shrink-0 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-merah-300 hover:text-merah-700">Makanan</button>
+          <button type="button" data-filter="minuman" class="filter-chip shrink-0 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-merah-300 hover:text-merah-700">Minuman</button>
+          <button type="button" data-filter="kerajinan" class="filter-chip shrink-0 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-merah-300 hover:text-merah-700">Kerajinan</button>
+          <button type="button" data-filter="pertanian" class="filter-chip shrink-0 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-gray-600 transition hover:border-merah-300 hover:text-merah-700">Pertanian</button>
+        </div>
+
+        <div id="productGrid" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="makanan">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-merah-50 via-orange-50 to-amber-50 text-5xl">
+              <span aria-hidden="true">🍠</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Makanan</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Kripik Singkong Pedas "Kerkep Crispy"</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">UMKM Bu Siti · Dusun Kerkep</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 15.000 <span class="text-xs font-medium text-gray-400">/ bungkus</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Kripik%20Singkong%20Pedas%20Kerkep%20Crispy."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="minuman">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-amber-50 via-orange-50 to-merah-50 text-5xl">
+              <span aria-hidden="true">☕</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Minuman</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Kopi Robusta Kerkep 250g</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">UMKM Pak Budi · Lereng Kerkep</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 35.000 <span class="text-xs font-medium text-gray-400">/ pack</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Kopi%20Robusta%20Kerkep%20250g."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="makanan">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-amber-50 to-yellow-50 text-5xl">
+              <span aria-hidden="true">🍯</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Makanan</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Gula Jawa Asli Cetak</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">UMKM Bu Rina · Kerkep Kulon</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 25.000 <span class="text-xs font-medium text-gray-400">/ kg</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Gula%20Jawa%20Asli%20Cetak."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="kerajinan">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-lime-50 to-emerald-50 text-5xl">
+              <span aria-hidden="true">🧺</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Kerajinan</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Anyaman Bambu Serbaguna</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">UMKM Pak Wagiman · Kerkep</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 45.000 <span class="text-xs font-medium text-gray-400">/ buah</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Anyaman%20Bambu%20Serbaguna."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="pertanian">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-emerald-50 to-lime-50 text-5xl">
+              <span aria-hidden="true">🌾</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Pertanian</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Beras Pandan Wangi 5 kg</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">Unit Usaha Tani Kerkep</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 65.000 <span class="text-xs font-medium text-gray-400">/ karung</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Beras%20Pandan%20Wangi%205%20kg."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="makanan">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-sky-50 to-indigo-50 text-5xl">
+              <span aria-hidden="true">🥚</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Makanan</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Telur Asin Matang (6 butir)</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">UMKM Bu Darsih · Kerkep Wetan</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 30.000 <span class="text-xs font-medium text-gray-400">/ pack</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Telur%20Asin%20Matang%206%20butir."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="pertanian">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-yellow-50 to-amber-50 text-5xl">
+              <span aria-hidden="true">🐝</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Pertanian</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Madu Hutan Kerkep 500 ml</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">Kelompok Tani Hutan Kerkep</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 80.000 <span class="text-xs font-medium text-gray-400">/ botol</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Madu%20Hutan%20Kerkep%20500%20ml."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1.5 hover:shadow-soft" data-category="kerajinan">
+            <div class="relative grid h-40 place-items-center bg-gradient-to-br from-rose-50 to-merah-50 text-5xl">
+              <span aria-hidden="true">👕</span>
+              <span class="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-merah-700 backdrop-blur">Kerajinan</span>
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-extrabold leading-snug text-gray-900">Batik Tulis Motif Kerkep</h3>
+              <p class="mt-1 text-xs font-medium text-gray-500">UMKM Mbak Ani · Kerkep</p>
+              <p class="mt-3 text-lg font-extrabold text-merah-600">Rp 185.000 <span class="text-xs font-medium text-gray-400">/ lembar</span></p>
+              <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20memesan%20Batik%20Tulis%20Motif%20Kerkep."
+                 target="_blank" rel="noopener noreferrer"
+                 class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <p id="productEmpty" class="mt-10 hidden rounded-2xl border border-dashed border-gray-200 bg-gray-50 py-12 text-center text-sm font-semibold text-gray-400">
+          Belum ada produk pada kategori ini.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ BERITA & TRANSPARANSI ═══════════════════════════════════════════ -->
+    <section id="berita" class="scroll-mt-24 py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Berita &amp; Transparansi</span>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Kabar Terbaru dari Koperasi</h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-600">
+            Kami terbuka. Setiap laporan keuangan dan kegiatan dapat diakses oleh seluruh anggota.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-8 lg:grid-cols-3">
+
+          <div class="grid gap-5 sm:grid-cols-2 lg:col-span-2">
+
+            <article class="news-card reveal flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+              <div class="relative grid h-36 place-items-center bg-gradient-to-br from-merah-500 to-merah-700 text-white">
+                <svg class="h-12 w-12 opacity-90" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/>
+                </svg>
+                <span class="absolute left-4 top-4 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur">RAT</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <p class="text-xs font-bold uppercase tracking-wider text-merah-600">12 Februari 2025</p>
+                <h3 class="mt-2 text-base font-extrabold leading-snug text-gray-900">RAT 2024 Tetapkan SHU Rp 148 Juta untuk Anggota</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+                  Rapat Anggota Tahunan menyetujui pembagian Sisa Hasil Usaha dan rencana kerja tahun buku 2025.
+                </p>
+                <button type="button" class="news-open mt-4 inline-flex items-center gap-1.5 self-start text-sm font-bold text-merah-600 transition hover:text-merah-700">
+                  Baca selengkapnya
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+                  </svg>
+                </button>
+                <template class="news-content">
+                  <p>Rapat Anggota Tahunan (RAT) Koperasi Desa Merah Putih Kerkep tahun buku 2024 digelar di Balai Desa Kerkep dan dihadiri 218 anggota.</p>
+                  <p>Dalam forum tersebut disepakati Sisa Hasil Usaha (SHU) sebesar <strong>Rp 148.000.000</strong> dengan pembagian: 40% untuk anggota berdasarkan partisipasi simpanan dan transaksi, 25% untuk cadangan koperasi, 15% untuk dana pendidikan, 10% untuk dana sosial, dan 10% untuk pengurus serta pengawas.</p>
+                  <p>Selain itu, anggota menyetujui rencana penambahan satu unit usaha baru berupa layanan penggilingan padi mini yang ditargetkan beroperasi pada kuartal ketiga 2025.</p>
+                  <p>Laporan keuangan lengkap dapat diunduh pada panel transparansi di halaman ini.</p>
+                </template>
+              </div>
+            </article>
+
+            <article class="news-card reveal flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft" style="transition-delay:100ms">
+              <div class="relative grid h-36 place-items-center bg-gradient-to-br from-emerald-500 to-emerald-700 text-white">
+                <svg class="h-12 w-12 opacity-90" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
+                </svg>
+                <span class="absolute left-4 top-4 rounded-full bg-white/20 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur">Program</span>
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <p class="text-xs font-bold uppercase tracking-wider text-merah-600">28 Januari 2025</p>
+                <h3 class="mt-2 text-base font-extrabold leading-snug text-gray-900">Sembako Murah Hadir Tiap Sabtu di Balai Desa</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
+                  Harga di bawah pasar hingga 20% untuk beras, minyak, gula, dan telur. Cukup tunjukkan kartu anggota.
+                </p>
+                <button type="button" class="news-open mt-4 inline-flex items-center gap-1.5 self-start text-sm font-bold text-merah-600 transition hover:text-merah-700">
+                  Baca selengkapnya
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+                  </svg>
+                </button>
+                <template class="news-content">
+                  <p>Mulai Februari 2025, unit Sembako Murah Koperasi Desa Merah Putih Kerkep beroperasi setiap <strong>Sabtu pagi, pukul 07.00–11.00 WIB</strong> di Balai Desa Kerkep.</p>
+                  <p>Komoditas yang tersedia antara lain beras medium, minyak goreng, gula pasir, telur ayam, dan tepung terigu dengan harga rata-rata 15–20% di bawah harga pasar.</p>
+                  <p>Setiap anggota dapat membeli maksimal 2 paket per pekan. Cukup tunjukkan kartu anggota atau KTP Desa Kerkep di meja layanan.</p>
+                  <p>Pemesanan antar-dusun dapat dilakukan melalui WhatsApp pengurus dengan biaya antar sukarela.</p>
+                </template>
+              </div>
+            </article>
+
+            <article class="news-card reveal flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft sm:col-span-2" style="transition-delay:180ms">
+              <div class="flex flex-1 flex-col gap-5 p-5 sm:flex-row sm:items-center">
+                <div class="grid h-24 w-full shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-amber-400 to-merah-500 text-white sm:h-24 sm:w-24">
+                  <svg class="h-10 w-10 opacity-95" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs font-bold uppercase tracking-wider text-merah-600">15 Januari 2025</p>
+                  <h3 class="mt-1.5 text-base font-extrabold leading-snug text-gray-900">Pelatihan Digital Marketing untuk 32 Pelaku UMKM Kerkep</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-gray-500">
+                    Bekerja sama dengan Dinas Koperasi Kabupaten, peserta belajar foto produk, copywriting, dan membuka toko online.
+                  </p>
+                </div>
+                <button type="button" class="news-open inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border border-merah-200 px-4 py-2.5 text-sm font-bold text-merah-700 transition hover:bg-merah-50">
+                  Baca
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+                  </svg>
+                </button>
+                <template class="news-content">
+                  <p>Sebanyak 32 pelaku UMKM dari Desa Kerkep mengikuti pelatihan digital marketing selama dua hari di Balai Desa Kerkep.</p>
+                  <p>Materi mencakup fotografi produk menggunakan ponsel, penulisan deskripsi produk, pengelolaan media sosial, serta pendaftaran usaha di platform marketplace.</p>
+                  <p>Koperasi menyediakan pendampingan lanjutan berupa klinik konsultasi setiap dua pekan dan bantuan pembuatan katalog produk digital.</p>
+                  <p>Peserta yang lolos kurasi akan diikutsertakan dalam Katalog Produk UMKM Kerkep di situs ini.</p>
+                </template>
+              </div>
+            </article>
+
+          </div>
+
+          <aside class="reveal" style="transition-delay:120ms">
+            <div class="sticky top-28 rounded-2xl border border-gray-100 bg-white p-6 shadow-card">
+              <div class="flex items-center gap-3">
+                <span class="grid h-11 w-11 place-items-center rounded-xl bg-merah-50 text-merah-600">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="text-base font-extrabold text-gray-900">Pusat Unduhan</h3>
+                  <p class="text-xs font-medium text-gray-500">Laporan resmi &amp; dokumen</p>
+                </div>
+              </div>
+
+              <ul class="mt-5 space-y-2.5">
+                <li>
+                  <button type="button" data-download="Laporan-RAT-2024-Koperasi-Kerkep.txt"
+                          class="download-btn group flex w-full items-center gap-3 rounded-xl border border-gray-100 p-3 text-left transition hover:border-merah-200 hover:bg-merah-50/50">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-merah-50 text-[10px] font-extrabold text-merah-600 transition group-hover:bg-merah-600 group-hover:text-white">PDF</span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block truncate text-sm font-bold text-gray-800">Laporan RAT 2024</span>
+                      <span class="block text-[11px] font-medium text-gray-400">1,8 MB · Diperbarui Feb 2025</span>
+                    </span>
+                    <svg class="h-4 w-4 shrink-0 text-gray-300 transition group-hover:text-merah-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5 7.5 12M12 16.5V3"/>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-download="Laporan-Keuangan-Semester-II-2024.txt"
+                          class="download-btn group flex w-full items-center gap-3 rounded-xl border border-gray-100 p-3 text-left transition hover:border-merah-200 hover:bg-merah-50/50">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-merah-50 text-[10px] font-extrabold text-merah-600 transition group-hover:bg-merah-600 group-hover:text-white">PDF</span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block truncate text-sm font-bold text-gray-800">Laporan Keuangan Sem. II 2024</span>
+                      <span class="block text-[11px] font-medium text-gray-400">940 KB · Jan 2025</span>
+                    </span>
+                    <svg class="h-4 w-4 shrink-0 text-gray-300 transition group-hover:text-merah-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5 7.5 12M12 16.5V3"/>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-download="Rencana-Kerja-RAPB-2025.txt"
+                          class="download-btn group flex w-full items-center gap-3 rounded-xl border border-gray-100 p-3 text-left transition hover:border-merah-200 hover:bg-merah-50/50">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-merah-50 text-[10px] font-extrabold text-merah-600 transition group-hover:bg-merah-600 group-hover:text-white">PDF</span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block truncate text-sm font-bold text-gray-800">Rencana Kerja &amp; RAPB 2025</span>
+                      <span class="block text-[11px] font-medium text-gray-400">620 KB · Des 2024</span>
+                    </span>
+                    <svg class="h-4 w-4 shrink-0 text-gray-300 transition group-hover:text-merah-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5 7.5 12M12 16.5V3"/>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-download="AD-ART-Koperasi-Kerkep.txt"
+                          class="download-btn group flex w-full items-center gap-3 rounded-xl border border-gray-100 p-3 text-left transition hover:border-merah-200 hover:bg-merah-50/50">
+                    <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-merah-50 text-[10px] font-extrabold text-merah-600 transition group-hover:bg-merah-600 group-hover:text-white">PDF</span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block truncate text-sm font-bold text-gray-800">AD/ART &amp; Peraturan Khusus</span>
+                      <span class="block text-[11px] font-medium text-gray-400">410 KB · Agu 2023</span>
+                    </span>
+                    <svg class="h-4 w-4 shrink-0 text-gray-300 transition group-hover:text-merah-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5 7.5 12M12 16.5V3"/>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+
+              <p class="mt-5 rounded-xl bg-gray-50 p-3 text-[11px] leading-relaxed text-gray-500">
+                Dokumen bersifat terbuka untuk seluruh anggota. Butuh salinan cetak? Silakan hubungi sekretariat koperasi.
+              </p>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+        <!-- ══════════════════════════════════════════ STRUKTUR ORGANISASI ═══════════════════════════════════════════ -->
+        <section id="struktur" class="scroll-mt-24 bg-white py-16 sm:py-20">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+            <div class="reveal mx-auto max-w-2xl text-center">
+              <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Struktur Organisasi</span>
+              <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Pengurus &amp; Pengelola Koperasi</h2>
+              <p class="mt-4 text-base leading-relaxed text-gray-600">
+                Dikelola secara profesional dan akuntabel oleh pengurus yang dipilih langsung oleh anggota dalam Rapat Anggota Tahunan.
+              </p>
+            </div>
+    
+            <div class="reveal mt-12 space-y-8">
+    
+              <!-- Rapat Anggota -->
+              <div class="flex flex-col items-center">
+                <div class="inline-flex items-center gap-3 rounded-2xl border-2 border-merah-300 bg-merah-50 px-6 py-4 shadow-sm">
+                  <span class="grid h-10 w-10 place-items-center rounded-xl bg-merah-600 text-white">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                    </svg>
+                  </span>
+                  <div class="text-left">
+                    <p class="text-[10px] font-bold uppercase tracking-[0.14em] text-merah-600">Kekuasaan Tertinggi</p>
+                    <p class="text-lg font-extrabold text-gray-900">Rapat Anggota</p>
+                  </div>
+                </div>
+                <div class="mt-2 h-8 w-px bg-gray-200"></div>
+              </div>
+    
+              <!-- PENGURUS -->
+              <div class="w-full">
+                <h3 class="mb-6 text-center text-xl font-extrabold text-gray-900">Pengurus</h3>
+                <div class="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  
+                  <!-- Ketua -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Ketua</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">SUHADI</p>
+                  </div>
+    
+                  <!-- Wakil Ketua Bidang Usaha -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600 leading-tight">Wakil Ketua<br />Bidang Usaha</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">CHANAFI</p>
+                  </div>
+    
+                  <!-- Wakil Ketua Bidang Anggota -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600 leading-tight">Wakil Ketua<br />Bidang Anggota</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">WAHYU PRIYONO</p>
+                  </div>
+    
+                  <!-- Sekretaris -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Sekretaris</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">RIZQA KURNIWATI</p>
+                  </div>
+    
+                </div>
+    
+                <!-- Bendahara (Center) -->
+                <div class="mt-4 flex justify-center">
+                  <div class="w-full sm:w-1/2 lg:w-1/4 rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Bendahara</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">SABRINA NAYLA HAKIM</p>
+                  </div>
+                </div>
+                <div class="mx-auto mt-8 h-8 w-px bg-gray-200"></div>
+              </div>
+    
+              <!-- PENGAWAS -->
+              <div class="w-full">
+                <h3 class="mb-6 text-center text-xl font-extrabold text-gray-900">Pengawas</h3>
+                <div class="grid w-full gap-4 sm:grid-cols-3">
+                  
+                  <!-- Ketua Pengawas -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Ketua</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">BONDAN WIJOKONGKO</p>
+                  </div>
+    
+                  <!-- Anggota Pengawas 1 -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Anggota</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">ANSORI</p>
+                  </div>
+    
+                  <!-- Anggota Pengawas 2 -->
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Anggota</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">SUNARDI</p>
+                  </div>
+    
+                </div>
+                <div class="mx-auto mt-8 h-8 w-px bg-gray-200"></div>
+              </div>
+    
+              <!-- MANAJER -->
+              <div class="w-full">
+                <h3 class="mb-6 text-center text-xl font-extrabold text-gray-900">Manajer</h3>
+                
+                <!-- Menggunakan flex agar otomatis ke tengah -->
+                <div class="flex justify-center">
+                  <div class="w-full max-w-xs rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-gradient-to-br from-merah-100 to-merah-50 text-merah-500 mb-3">
+                      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <!-- Saya tambahkan label kecil di atas nama agar seragam dengan yang lain -->
+                    <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Manajer</p>
+                    <p class="mt-1 text-sm font-extrabold text-gray-900">APRILIA</p>
+                  </div>
+                </div>
+
+              </div>
+
+                </div>
+                <div class="mx-auto mt-8 h-8 w-px bg-gray-200"></div>
+              </div>
+
+    
+              <!-- Unit Pengelola -->
+              <div>
+                <p class="mb-4 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-merah-600">Unit Pengelola</p>
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <span class="grid h-10 w-10 place-items-center rounded-lg bg-merah-50 text-merah-600">
+                      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                    </span>
+                    <p class="mt-3 text-[10px] font-bold uppercase tracking-wider text-merah-600">Unit</p>
+                    <p class="mt-0.5 text-sm font-extrabold text-gray-900">Simpan Pinjam</p>
+                    <p class="mt-1 text-xs text-gray-500">Tri Wahyuni</p>
+                  </div>
+    
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <span class="grid h-10 w-10 place-items-center rounded-lg bg-merah-50 text-merah-600">
+                      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                      </svg>
+                    </span>
+                    <p class="mt-3 text-[10px] font-bold uppercase tracking-wider text-merah-600">Unit</p>
+                    <p class="mt-0.5 text-sm font-extrabold text-gray-900">Usaha &amp; Sembako</p>
+                    <p class="mt-1 text-xs text-gray-500">Bambang Sutrisno</p>
+                  </div>
+    
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <span class="grid h-10 w-10 place-items-center rounded-lg bg-merah-50 text-merah-600">
+                      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                      </svg>
+                    </span>
+                    <p class="mt-3 text-[10px] font-bold uppercase tracking-wider text-merah-600">Unit</p>
+                    <p class="mt-0.5 text-sm font-extrabold text-gray-900">Pemberdayaan UMKM</p>
+                    <p class="mt-1 text-xs text-gray-500">Anisa Rahma</p>
+                  </div>
+    
+                  <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+                    <span class="grid h-10 w-10 place-items-center rounded-lg bg-merah-50 text-merah-600">
+                      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                      </svg>
+                    </span>
+                    <p class="mt-3 text-[10px] font-bold uppercase tracking-wider text-merah-600">Unit</p>
+                    <p class="mt-0.5 text-sm font-extrabold text-gray-900">Apotek &amp; Klinik</p>
+                    <p class="mt-1 text-xs text-gray-500">dr. XYZ</p>
+                  </div>
+    
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+
+    <!-- ══════════════════════════════════════════ FAQ ═══════════════════════════════════════════ -->
+    <section id="faq" class="scroll-mt-24 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Pertanyaan Umum</span>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Masih Ada yang Ingin Ditanyakan?</h2>
+          <p class="mt-4 text-base leading-relaxed text-gray-600">
+            Jawaban singkat untuk hal-hal yang paling sering ditanyakan warga.
+          </p>
+        </div>
+
+        <div class="reveal mt-10 space-y-3" id="faqList">
+
+          <div class="faq-item overflow-hidden rounded-2xl border border-gray-100 bg-white transition hover:border-merah-200">
+            <button type="button" class="faq-btn flex w-full items-center justify-between gap-4 px-5 py-4 text-left" aria-expanded="false">
+              <span class="text-sm font-extrabold text-gray-900 sm:text-base">Siapa yang boleh menjadi anggota koperasi?</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-merah-600 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel">
+              <p class="px-5 pb-5 text-sm leading-relaxed text-gray-600">
+                Seluruh warga Desa Kerkep yang telah berusia 17 tahun atau sudah menikah dapat menjadi anggota.
+                Cukup melengkapi formulir pendaftaran, fotokopi KTP/KK, dan membayar simpanan pokok sebesar Rp 50.000
+                serta simpanan wajib Rp 10.000 per bulan.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item overflow-hidden rounded-2xl border border-gray-100 bg-white transition hover:border-merah-200">
+            <button type="button" class="faq-btn flex w-full items-center justify-between gap-4 px-5 py-4 text-left" aria-expanded="false">
+              <span class="text-sm font-extrabold text-gray-900 sm:text-base">Berapa lama proses pencairan pinjaman?</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-merah-600 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel">
+              <p class="px-5 pb-5 text-sm leading-relaxed text-gray-600">
+                Untuk pinjaman di bawah Rp 5 juta, pencairan dapat dilakukan maksimal 1×24 jam setelah berkas lengkap
+                dan disetujui pengurus. Pinjaman di atas Rp 5 juta memerlukan verifikasi tambahan 2–3 hari kerja.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item overflow-hidden rounded-2xl border border-gray-100 bg-white transition hover:border-merah-200">
+            <button type="button" class="faq-btn flex w-full items-center justify-between gap-4 px-5 py-4 text-left" aria-expanded="false">
+              <span class="text-sm font-extrabold text-gray-900 sm:text-base">Apakah ada biaya administrasi atau denda tersembunyi?</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-merah-600 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel">
+              <p class="px-5 pb-5 text-sm leading-relaxed text-gray-600">
+                Tidak ada. Satu-satunya beban adalah bunga flat 1% per bulan dari pokok pinjaman dan biaya materai sesuai
+                ketentuan. Denda keterlambatan hanya dikenakan 0,5% per bulan dari angsuran yang tertunggak, dan itulah
+                yang tertulis di akad.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item overflow-hidden rounded-2xl border border-gray-100 bg-white transition hover:border-merah-200">
+            <button type="button" class="faq-btn flex w-full items-center justify-between gap-4 px-5 py-4 text-left" aria-expanded="false">
+              <span class="text-sm font-extrabold text-gray-900 sm:text-base">Bagaimana cara menjadi mitra UMKM di katalog ini?</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-merah-600 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel">
+              <p class="px-5 pb-5 text-sm leading-relaxed text-gray-600">
+                Pelaku usaha desa Kerkep dapat mendaftar ke unit Pemberdayaan UMKM dengan membawa sampel produk,
+                daftar harga, dan foto produk. Tim koperasi akan melakukan kurasi, membantu perbaikan kemasan,
+                lalu menayangkan produk pada katalog digital ini secara gratis.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item overflow-hidden rounded-2xl border border-gray-100 bg-white transition hover:border-merah-200">
+            <button type="button" class="faq-btn flex w-full items-center justify-between gap-4 px-5 py-4 text-left" aria-expanded="false">
+              <span class="text-sm font-extrabold text-gray-900 sm:text-base">Kapan jam operasional sekretariat koperasi?</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-merah-600 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel">
+              <p class="px-5 pb-5 text-sm leading-relaxed text-gray-600">
+                Sekretariat buka Senin–Jumat pukul 08.00–15.00 WIB dan Sabtu pukul 08.00–12.00 WIB.
+                Layanan Sembako Murah beroperasi khusus setiap Sabtu pagi di Balai Desa Kerkep.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════ CTA BAND ═══════════════════════════════════════════ -->
+    <section class="pb-16 sm:pb-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal relative overflow-hidden rounded-3xl bg-gradient-to-br from-merah-700 via-merah-600 to-merah-800 px-6 py-12 text-center shadow-soft sm:px-12 sm:py-16">
+          <div class="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-2xl" aria-hidden="true"></div>
+          <div class="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-white/10 blur-2xl" aria-hidden="true"></div>
+          <h2 class="relative text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
+            Satu Langkah Kecil, Manfaat Besar untuk Desa
+          </h2>
+          <p class="relative mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-merah-50 sm:text-base">
+            Bergabunglah bersama 1.240+ warga Kerkep yang sudah merasakan manfaat koperasi. Pendaftaran gratis dan bisa
+            dilakukan langsung dari rumah.
+          </p>
+          <div class="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <button type="button" data-open-modal="modalDaftar"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-merah-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-merah-50 sm:text-base">
+              Daftar Jadi Anggota
+            </button>
+            <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20bertanya."
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20 sm:text-base">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              Tanya Pengurus
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+     LOKASI & PETA
+═══════════════════════════════════════════ -->
+<section id="lokasi" class="scroll-mt-24 bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <span class="inline-block rounded-full bg-merah-50 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-merah-700">Lokasi Kami</span>
+      <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Kunjungi KDKMP Kerkep - Gurah</h2>
+    </div>
+
+    <div class="reveal mt-10 grid gap-6 lg:grid-cols-3">
+
+      <!-- PETA -->
+      <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-card lg:col-span-2">
+        <iframe
+          title="Peta Lokasi Koperasi Desa Merah Putih Kerkep"
+          src="https://www.google.com/maps?q=-7.799437, 112.093750&hl=id&z=16&output=embed"
+          width="100%"
+          height="420"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- INFO ALAMAT -->
+      <div class="flex flex-col gap-4">
+        <div class="rounded-2xl border border-gray-100 bg-gray-50/70 p-5">
+          <div class="flex items-start gap-3">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-merah-50 text-merah-600">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Alamat</p>
+              <p class="mt-1 text-sm font-semibold leading-relaxed text-gray-800">
+                Desa Kerkep<br />
+                Kec. Gurah, Kab. Kediri<br />
+                Jawa Timur 64181
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-100 bg-gray-50/70 p-5">
+          <div class="flex items-start gap-3">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-merah-50 text-merah-600">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-merah-600">Jam Operasional</p>
+              <ul class="mt-1 space-y-1 text-sm text-gray-700">
+                <li class="flex justify-between gap-4"><span> Buka Setiap Hari Senin – Minggu</span><span class="font-semibold">08.00 – 17.00</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://maps.app.goo.gl/mZViMicX6GaZeTKv9"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 rounded-xl bg-merah-600 px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-merah-700">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"/>
+          </svg>
+          Buka di Google Maps
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+  
+  <!-- ══════════════════════════════════════════ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="border-t border-gray-100 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-merah-500 to-merah-700 text-white shadow-soft">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M3 12h18M6.5 6.5l11 11M17.5 6.5l-11 11"/>
+              </svg>
+            </span>
+            <span class="leading-tight">
+              <span class="block text-[10px] font-bold uppercase tracking-[0.2em] text-merah-600">Koperasi Desa</span>
+              <span class="block text-sm font-extrabold text-gray-900">Merah Putih Kerkep</span>
+            </span>
+          </div>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-gray-500">
+            Koperasi warga Desa Kerkep yang berbadan hukum. Bersama membangun ekonomi desa yang adil, transparan, dan berkelanjutan.
+          </p>
+          <div class="mt-5 flex items-center gap-2">
+            <a href="#" aria-label="Facebook Koperasi Kerkep" class="grid h-9 w-9 place-items-center rounded-lg border border-gray-200 text-gray-500 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-600">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 10-11.563 9.875v-6.988H7.898V12h2.539V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.887h-2.33v6.988A10 10 0 0022 12z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram Koperasi Kerkep" class="grid h-9 w-9 place-items-center rounded-lg border border-gray-200 text-gray-500 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-600">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube Koperasi Kerkep" class="grid h-9 w-9 place-items-center rounded-lg border border-gray-200 text-gray-500 transition hover:border-merah-300 hover:bg-merah-50 hover:text-merah-600">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Koperasi Kerkep" class="grid h-9 w-9 place-items-center rounded-lg border border-gray-200 text-gray-500 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-extrabold uppercase tracking-wider text-gray-900">Navigasi</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#layanan" class="text-gray-500 transition hover:text-merah-600">Layanan Utama</a></li>
+            <li><a href="#simulasi" class="text-gray-500 transition hover:text-merah-600">Simulasi Pinjaman</a></li>
+            <li><a href="#produk" class="text-gray-500 transition hover:text-merah-600">Katalog UMKM</a></li>
+            <li><a href="#berita" class="text-gray-500 transition hover:text-merah-600">Berita &amp; Transparansi</a></li>
+            <li><a href="#struktur" class="text-gray-500 transition hover:text-merah-600">Struktur Organisasi</a></li>
+            <li><a href="#faq" class="text-gray-500 transition hover:text-merah-600">Pertanyaan Umum</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-extrabold uppercase tracking-wider text-gray-900">Sekretariat</h3>
+          <ul class="mt-4 space-y-3 text-sm text-gray-500">
+            <li class="flex gap-2.5">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-merah-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+              </svg>
+              <span>KDKMP Desa Kerkep, Kec. Gurah,<br />Kab. Kediri, Jawa Timur</span>
+            </li>
+            <li class="flex gap-2.5">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-merah-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+              </svg>
+              <a href="tel:+6281234567890" class="transition hover:text-merah-600">+62 812-3456-7890</a>
+            </li>
+            <li class="flex gap-2.5">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-merah-600" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+              </svg>
+              <a href="mailto:halo@koperasikerkep.desa.id" class="transition hover:text-merah-600">halo@koperasikerkep.desa.id</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-extrabold uppercase tracking-wider text-gray-900">Jam Operasional</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li class="flex items-center justify-between gap-4 text-gray-500">
+              <span>Senin – Jumat</span><span class="font-bold text-gray-800">08.00 – 15.00</span>
+            </li>
+            <li class="flex items-center justify-between gap-4 text-gray-500">
+              <span>Sabtu</span><span class="font-bold text-gray-800">08.00 – 12.00</span>
+            </li>
+            <li class="flex items-center justify-between gap-4 text-gray-500">
+              <span>Minggu &amp; Libur</span><span class="font-bold text-merah-600">Tutup</span>
+            </li>
+          </ul>
+          <div class="mt-5 rounded-xl border border-merah-100 bg-merah-50/60 p-3.5">
+            <p class="text-[11px] font-bold uppercase tracking-wider text-merah-700">Sembako Murah</p>
+            <p class="mt-1 text-xs font-medium text-merah-800">Setiap Sabtu, 07.00 – 11.00 WIB</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-100 pt-6 sm:flex-row">
+        <p class="text-xs font-medium text-gray-400">
+          © <span id="year">2025</span> Koperasi Desa Merah Putih Kerkep. Seluruh hak cipta dilindungi.
+        </p>
+        <p class="text-xs font-medium text-gray-400">
+          Dibangun dengan ❤️ untuk warga Kerkep.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/6281234567890?text=Halo%20Koperasi%20Desa%20Merah%20Putih%20Kerkep%2C%20saya%20ingin%20bertanya."
+     target="_blank" rel="noopener noreferrer" aria-label="Hubungi kami via WhatsApp"
+     class="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-emerald-500 text-white shadow-[0_12px_30px_-8px_rgba(16,185,129,0.7)] transition hover:-translate-y-1 hover:bg-emerald-600">
+    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <!-- MODAL: DAFTAR ANGGOTA -->
+  <div id="modalDaftar" class="modal fixed inset-0 z-[60] items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalDaftarTitle">
+    <div class="modal-backdrop absolute inset-0 bg-gray-900/60 backdrop-blur-sm" data-close-modal></div>
+
+    <div class="modal-panel relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
+      <button type="button" data-close-modal aria-label="Tutup"
+              class="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div id="daftarFormWrap">
+        <span class="inline-block rounded-full bg-merah-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-merah-700">Pendaftaran Anggota</span>
+        <h2 id="modalDaftarTitle" class="mt-3 text-2xl font-extrabold tracking-tight text-gray-900">Gabung Koperasi Kerkep</h2>
+        <p class="mt-2 text-sm leading-relaxed text-gray-500">
+          Isi data singkat di bawah. Pengurus akan menghubungi Anda via WhatsApp untuk verifikasi.
+        </p>
+
+        <form id="formDaftar" class="mt-6 space-y-4" novalidate>
+          <div>
+            <label for="namaLengkap" class="mb-1.5 block text-sm font-bold text-gray-700">Nama Lengkap</label>
+            <input id="namaLengkap" name="nama" type="text" required placeholder="Contoh: Siti Aminah"
+                   class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-merah-400 focus:bg-white focus:ring-4 focus:ring-merah-100" />
+          </div>
+
+          <div>
+            <label for="waNumber" class="mb-1.5 block text-sm font-bold text-gray-700">Nomor WhatsApp</label>
+            <input id="waNumber" name="wa" type="tel" required inputmode="numeric" placeholder="0812xxxxxxx"
+                   class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-merah-400 focus:bg-white focus:ring-4 focus:ring-merah-100" />
+          </div>
+
+          <div>
+            <label for="alamat" class="mb-1.5 block text-sm font-bold text-gray-700">Alamat / Dusun</label>
+            <input id="alamat" name="alamat" type="text" required placeholder="Contoh: Kerkep Wetan RT 02"
+                   class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-merah-400 focus:bg-white focus:ring-4 focus:ring-merah-100" />
+          </div>
+
+          <div>
+            <label for="layanan" class="mb-1.5 block text-sm font-bold text-gray-700">Layanan yang Diminati</label>
+            <select id="layanan" name="layanan"
+                    class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-800 outline-none transition focus:border-merah-400 focus:bg-white focus:ring-4 focus:ring-merah-100">
+              <option>Simpan Pinjam</option>
+              <option>Unit Usaha Desa</option>
+              <option>Pemberdayaan UMKM</option>
+              <option>Sembako Murah</option>
+            </select>
+          </div>
+
+          <label class="flex items-start gap-2.5 text-xs leading-relaxed text-gray-500">
+            <input type="checkbox" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-merah-600 focus:ring-merah-500" />
+            <span>Saya menyetujui AD/ART koperasi dan bersedia membayar simpanan pokok Rp 50.000.</span>
+          </label>
+
+          <button type="submit"
+                  class="w-full rounded-xl bg-merah-600 px-4 py-3.5 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-merah-700 active:translate-y-0">
+            Kirim Pendaftaran
+          </button>
+        </form>
+      </div>
+
+      <div id="daftarSukses" class="hidden text-center">
+        <span class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-50 text-emerald-600">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+          </svg>
+        </span>
+        <h2 class="mt-5 text-2xl font-extrabold tracking-tight text-gray-900">Pendaftaran Terkirim!</h2>
+        <p class="mt-2 text-sm leading-relaxed text-gray-500">
+          Terima kasih, <strong id="suksesNama" class="text-gray-800">warga</strong>. Nomor pendaftaran sementara Anda:
+        </p>
+        <p id="suksesId" class="mt-3 rounded-xl border border-dashed border-merah-200 bg-merah-50 px-4 py-3 text-lg font-extrabold tracking-wider text-merah-700">KMP-0000</p>
+        <p class="mt-4 text-sm leading-relaxed text-gray-500">
+          Silakan lanjutkan konfirmasi ke pengurus melalui WhatsApp agar berkas Anda segera diproses.
+        </p>
+        <a id="suksesWa" href="#" target="_blank" rel="noopener noreferrer"
+           class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3.5 text-sm font-bold text-white transition hover:bg-emerald-600">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Konfirmasi via WhatsApp
+        </a>
+        <button type="button" data-close-modal class="mt-3 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm font-bold text-gray-600 transition hover:bg-gray-50">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BERITA -->
+  <div id="modalBerita" class="modal fixed inset-0 z-[60] items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalBeritaTitle">
+    <div class="modal-backdrop absolute inset-0 bg-gray-900/60 backdrop-blur-sm" data-close-modal></div>
+
+    <div class="modal-panel relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
+      <button type="button" data-close-modal aria-label="Tutup"
+              class="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <span class="inline-block rounded-full bg-merah-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-merah-700">Berita Koperasi</span>
+      <h2 id="modalBeritaTitle" class="mt-3 pr-8 text-xl font-extrabold leading-snug tracking-tight text-gray-900 sm:text-2xl">Judul berita</h2>
+      <div id="modalBeritaBody" class="mt-4 space-y-3 text-sm leading-relaxed text-gray-600"></div>
+
+      <button type="button" data-close-modal
+              class="mt-7 w-full rounded-xl bg-merah-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-merah-700">
+        Tutup Berita
+      </button>
+    </div>
+  </div>
+
+  <div id="toast"
+       class="fixed bottom-6 left-1/2 z-[70] -translate-x-1/2 rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white shadow-2xl">
+    <span id="toastText">Berhasil</span>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    (function () {
+      'use strict';
+
+      const $  = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+      const WA_NUMBER = '6281234567890';
+
+      const rupiah = (num) =>
+        'Rp ' + new Intl.NumberFormat('id-ID', { maximumFractionDigits: 0 }).format(Math.round(num));
+
+      let toastTimer = null;
+      function showToast(message) {
+        const toast = $('#toast');
+        $('#toastText').textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+      }
+
+      /* 1. NAVBAR SCROLL */
+      const navShell = $('#navShell');
+      function handleNavScroll() {
+        const scrolled = window.scrollY > 16;
+        navShell.classList.toggle('bg-white/95', scrolled);
+        navShell.classList.toggle('shadow-lg', scrolled);
+        navShell.classList.toggle('bg-white/80', !scrolled);
+      }
+      window.addEventListener('scroll', handleNavScroll, { passive: true });
+      handleNavScroll();
+
+      /* 2. MOBILE MENU */
+      const menuBtn    = $('#menuBtn');
+      const mobileMenu = $('#mobileMenu');
+      const iconMenu   = $('#iconMenu');
+      const iconClose  = $('#iconClose');
+
+      function setMenu(open) {
+        mobileMenu.classList.toggle('open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        iconMenu.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      }
+
+      menuBtn.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+      $$('#mobileMenu a, #mobileMenu button').forEach((el) =>
+        el.addEventListener('click', () => setMenu(false))
+      );
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) setMenu(false);
+      });
+
+      /* 3. SCROLL REVEAL */
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+        );
+        $$('.reveal').forEach((el) => revealObserver.observe(el));
+      } else {
+        $$('.reveal').forEach((el) => el.classList.add('is-visible'));
+      }
+
+      /* 4. COUNTER */
+      function animateCounter(el) {
+        const target   = parseFloat(el.dataset.target || '0');
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const prefix   = el.dataset.prefix || '';
+        const suffix   = el.dataset.suffix || '';
+        const duration = 1500;
+        const start    = performance.now();
+
+        function frame(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased    = 1 - Math.pow(1 - progress, 3);
+          const value    = target * eased;
+          el.textContent =
+            prefix +
+            value.toLocaleString('id-ID', {
+              minimumFractionDigits: decimals,
+              maximumFractionDigits: decimals
+            }) +
+            suffix;
+          if (progress < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+        $$('.counter').forEach((el) => counterObserver.observe(el));
+      } else {
+        $$('.counter').forEach(animateCounter);
+      }
+
+      /* 5. SIMULASI */
+      const RATE_PINJAMAN = 0.01;
+      const RATE_SIMPANAN = 0.006;
+
+      function fillSlider(input) {
+        const min = parseFloat(input.min || '0');
+        const max = parseFloat(input.max || '100');
+        const val = parseFloat(input.value);
+        const pct = ((val - min) / (max - min)) * 100;
+        input.style.background =
+          'linear-gradient(to right, #DC2626 0%, #DC2626 ' + pct + '%, #FEE2E2 ' + pct + '%, #FEE2E2 100%)';
+      }
+
+      const pAmount      = $('#pinjamanAmount');
+      const pTenor       = $('#pinjamanTenor');
+      const pAmountLabel = $('#pinjamanAmountLabel');
+      const pTenorLabel  = $('#pinjamanTenorLabel');
+      const outAngsuran  = $('#hasilAngsuran');
+      const outPokok     = $('#hasilPokok');
+      const outBunga     = $('#hasilBunga');
+      const outTotal     = $('#hasilTotal');
+
+      function hitungPinjaman() {
+        const pokok = parseFloat(pAmount.value);
+        const tenor = parseInt(pTenor.value, 10);
+
+        const bunga    = pokok * RATE_PINJAMAN * tenor;
+        const total    = pokok + bunga;
+        const angsuran = total / tenor;
+
+        pAmountLabel.textContent = rupiah(pokok);
+        pTenorLabel.textContent  = tenor + ' bulan';
+
+        outAngsuran.textContent = rupiah(angsuran);
+        outPokok.textContent    = rupiah(pokok);
+        outBunga.textContent    = rupiah(bunga);
+        outTotal.textContent    = rupiah(total);
+
+        fillSlider(pAmount);
+        fillSlider(pTenor);
+      }
+
+      const sAwal         = $('#simpananAwal');
+      const sBulanan      = $('#simpananBulanan');
+      const sTenor        = $('#simpananTenor');
+      const sAwalLabel    = $('#simpananAwalLabel');
+      const sBulananLabel = $('#simpananBulananLabel');
+      const sTenorLabel   = $('#simpananTenorLabel');
+      const outSaldo      = $('#hasilSaldo');
+      const outSetoran    = $('#hasilSetoran');
+      const outJasa       = $('#hasilJasa');
+      const outSaldoKecil = $('#hasilSaldoKecil');
+
+      function hitungSimpanan() {
+        const awal    = parseFloat(sAwal.value);
+        const bulanan = parseFloat(sBulanan.value);
+        const n       = parseInt(sTenor.value, 10);
+        const r       = RATE_SIMPANAN;
+
+        const fvAwal    = awal * Math.pow(1 + r, n);
+        const fvBulanan = bulanan * ((Math.pow(1 + r, n) - 1) / r);
+        const saldo     = fvAwal + fvBulanan;
+        const setoran   = awal + bulanan * n;
+        const jasa      = saldo - setoran;
+
+        sAwalLabel.textContent    = rupiah(awal);
+        sBulananLabel.textContent = rupiah(bulanan);
+        sTenorLabel.textContent   = n + ' bulan';
+
+        outSaldo.textContent      = rupiah(saldo);
+        outSetoran.textContent    = rupiah(setoran);
+        outJasa.textContent       = rupiah(jasa);
+        outSaldoKecil.textContent = rupiah(saldo);
+
+        fillSlider(sAwal);
+        fillSlider(sBulanan);
+        fillSlider(sTenor);
+      }
+
+      [pAmount, pTenor].forEach((input) => input.addEventListener('input', hitungPinjaman));
+      [sAwal, sBulanan, sTenor].forEach((input) => input.addEventListener('input', hitungSimpanan));
+
+      $$('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          pAmount.value = btn.dataset.amount;
+          hitungPinjaman();
+          showToast('Nominal pinjaman: ' + rupiah(parseFloat(btn.dataset.amount)));
+        });
+      });
+
+      const tabButtons = $$('[data-tab]');
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const tab = btn.dataset.tab;
+          tabButtons.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle('bg-white', active);
+            b.classList.toggle('shadow-sm', active);
+            b.classList.toggle('text-merah-700', active);
+            b.classList.toggle('text-gray-500', !active);
+            b.setAttribute('aria-selected', String(active));
+          });
+          $$('[data-panel]').forEach((panel) =>
+            panel.classList.toggle('hidden', panel.dataset.panel !== tab)
+          );
+          $$('[data-result]').forEach((panel) =>
+            panel.classList.toggle('hidden', panel.dataset.result !== tab)
+          );
+        });
+      });
+
+      hitungPinjaman();
+      hitungSimpanan();
+
+      /* 6. FILTER PRODUK */
+      const filterChips  = $$('.filter-chip');
+      const productCards = $$('.product-card');
+      const productEmpty = $('#productEmpty');
+
+      const ACTIVE_CHIP   = ['bg-merah-600', 'text-white', 'shadow-soft', 'border-transparent'];
+      const INACTIVE_CHIP = ['bg-white', 'text-gray-600', 'border', 'border-gray-200'];
+
+      filterChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const filter = chip.dataset.filter;
+
+          filterChips.forEach((c) => {
+            const isActive = c === chip;
+            ACTIVE_CHIP.forEach((cls) => c.classList.toggle(cls, isActive));
+            INACTIVE_CHIP.forEach((cls) => c.classList.toggle(cls, !isActive));
+          });
+
+          let visible = 0;
+          productCards.forEach((card) => {
+            const show = filter === 'semua' || card.dataset.category === filter;
+            card.classList.toggle('hidden', !show);
+            card.classList.remove('card-enter');
+
+            if (show) {
+              visible++;
+              void card.offsetWidth;
+              card.style.animationDelay = (visible - 1) * 45 + 'ms';
+              card.classList.add('card-enter');
+            }
+          });
+
+          productEmpty.classList.toggle('hidden', visible > 0);
+        });
+      });
+
+      /* 7. FAQ */
+      $$('.faq-item').forEach((item) => {
+        const btn   = $('.faq-btn', item);
+        const panel = $('.faq-panel', item);
+        const icon  = $('.faq-icon', item);
+
+        btn.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+
+          $$('.faq-item.open').forEach((other) => {
+            if (other === item) return;
+            other.classList.remove('open');
+            $('.faq-panel', other).style.maxHeight = '';
+            $('.faq-btn', other).setAttribute('aria-expanded', 'false');
+            $('.faq-icon', other).classList.remove('rotate-180');
+          });
+
+          item.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          panel.style.maxHeight = isOpen ? '' : panel.scrollHeight + 'px';
+          icon.classList.toggle('rotate-180', !isOpen);
+        });
+      });
+
+      let faqResizeTimer = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(faqResizeTimer);
+        faqResizeTimer = setTimeout(() => {
+          $$('.faq-item.open').forEach((item) => {
+            const panel = $('.faq-panel', item);
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+          });
+        }, 150);
+      });
+
+      /* 8. MODAL */
+      function openModal(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        const focusable = modal.querySelector('input, select, button');
+        if (focusable) setTimeout(() => focusable.focus(), 220);
+      }
+
+      function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('open');
+        if (!$('.modal.open')) document.body.style.overflow = '';
+      }
+
+      $$('[data-open-modal]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openModal(btn.dataset.openModal);
+          setMenu(false);
+        });
+      });
+
+      $$('[data-close-modal]').forEach((btn) => {
+        btn.addEventListener('click', () => closeModal(btn.closest('.modal')));
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          $$('.modal.open').forEach(closeModal);
+          setMenu(false);
+        }
+      });
+
+      /* 9. MODAL BERITA */
+      const modalBeritaTtl  = $('#modalBeritaTitle');
+      const modalBeritaBody = $('#modalBeritaBody');
+
+      $$('.news-open').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const article = btn.closest('.news-card');
+          const title   = $('h3', article).textContent.trim();
+          const date    = $('p', article).textContent.trim();
+          const tpl     = $('.news-content', article);
+
+          modalBeritaTtl.textContent = title;
+          modalBeritaBody.innerHTML =
+            '<p class="text-xs font-bold uppercase tracking-wider text-merah-600">' + date + '</p>' +
+            (tpl ? tpl.innerHTML : '');
+
+          openModal('modalBerita');
+        });
+      });
+
+      /* 10. UNDUHAN */
+      $$('.download-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filename = btn.dataset.download || 'dokumen-koperasi.txt';
+          const content = [
+            '============================================================',
+            'KOPERASI DESA MERAH PUTIH KERKEP',
+            'Balai Desa Kerkep, Kec. Gurah, Kab. Kediri, Jawa Timur',
+            '============================================================',
+            '',
+            'DOKUMEN : ' + filename.replace(/\.txt$/, '').replace(/-/g, ' '),
+            'DIUNDUH : ' + new Date().toLocaleString('id-ID'),
+            '',
+            '------------------------------------------------------------',
+            'RINGKASAN',
+            '------------------------------------------------------------',
+            '- Jumlah anggota aktif       : 1.240 orang',
+            '- Unit usaha                 : 4 unit',
+            '- Total dana kelolaan       : Rp 2.840.000.000',
+            '- Sisa Hasil Usaha (SHU)    : Rp 148.000.000',
+            '- Tingkat kelancaran angsuran: 98,6%',
+            '',
+            'Dokumen ini merupakan berkas contoh yang dihasilkan oleh',
+            'situs demo Koperasi Desa Merah Putih Kerkep. Untuk dokumen',
+            'resmi bertanda tangan, silakan menghubungi sekretariat.',
+            '============================================================'
+          ].join('\n');
+
+          const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+          const url  = URL.createObjectURL(blob);
+          const a    = document.createElement('a');
+
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+
+          showToast('Mengunduh: ' + filename.replace(/\.txt$/, ''));
+        });
+      });
+
+      /* 11. FORM DAFTAR */
+      const formDaftar      = $('#formDaftar');
+      const daftarFormWrap  = $('#daftarFormWrap');
+      const daftarSukses    = $('#daftarSukses');
+      const suksesNama      = $('#suksesNama');
+      const suksesId        = $('#suksesId');
+      const suksesWa        = $('#suksesWa');
+
+      formDaftar.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (!formDaftar.checkValidity()) {
+          formDaftar.reportValidity();
+          return;
+        }
+
+        const data    = new FormData(formDaftar);
+        const nama    = (data.get('nama') || '').toString().trim();
+        const wa      = (data.get('wa') || '').toString().trim();
+        const alamat  = (data.get('alamat') || '').toString().trim();
+        const layanan = (data.get('layanan') || '').toString();
+
+        const now      = new Date();
+        const memberId = 'KMP-' + now.getFullYear() + '-' + String(Math.floor(Math.random() * 9000) + 1000);
+
+        suksesNama.textContent = nama.split(' ')[0] || 'warga';
+        suksesId.textContent   = memberId;
+
+        const waMessage =
+          'Halo Pengurus Koperasi Desa Merah Putih Kerkep,%0A%0A' +
+          'Saya ingin mengonfirmasi pendaftaran anggota baru:%0A' +
+          '• No. Pendaftaran: ' + memberId + '%0A' +
+          '• Nama: ' + nama + '%0A' +
+          '• WhatsApp: ' + wa + '%0A' +
+          '• Alamat: ' + alamat + '%0A' +
+          '• Layanan diminati: ' + layanan + '%0A%0A' +
+          'Mohon arahan untuk proses selanjutnya. Terima kasih.';
+
+        suksesWa.href = 'https://wa.me/' + WA_NUMBER + '?text=' + waMessage;
+
+        daftarFormWrap.classList.add('hidden');
+        daftarSukses.classList.remove('hidden');
+        showToast('Pendaftaran berhasil dikirim!');
+      });
+
+      $$('[data-open-modal="modalDaftar"]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          formDaftar.reset();
+          daftarFormWrap.classList.remove('hidden');
+          daftarSukses.classList.add('hidden');
+        });
+      });
+
+      /* 12. TAHUN FOOTER */
+      $('#year').textContent = new Date().getFullYear();
+
+    })();
+  </script>
+
+</body>
+</html>
